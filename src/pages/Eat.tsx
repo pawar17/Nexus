@@ -1,36 +1,70 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { toast } from "sonner";
 
 const mealOptions = [
   {
     id: "breakfast",
-    title: "BREAKFAST",
+    title: "Breakfast",
     emoji: "🥞",
     description: "Morning meals",
-    color: "bg-gradient-to-br from-yellow-400 to-orange-400",
+    color: "bg-gradient-to-br from-amber-500 to-orange-500",
+    foods: [
+      { name: "Pancakes", emoji: "🥞" },
+      { name: "Cereal", emoji: "🥣" },
+      { name: "Toast", emoji: "🍞" },
+      { name: "Eggs", emoji: "🍳" },
+      { name: "Fruit", emoji: "🍎" },
+      { name: "Yogurt", emoji: "🥛" },
+    ],
   },
   {
     id: "lunch",
-    title: "LUNCH",
+    title: "Lunch",
     emoji: "🥗",
     description: "Midday meals",
-    color: "bg-gradient-to-br from-green-400 to-lime-400",
+    color: "bg-gradient-to-br from-emerald-500 to-green-500",
+    foods: [
+      { name: "Sandwich", emoji: "🥪" },
+      { name: "Soup", emoji: "🍲" },
+      { name: "Salad", emoji: "🥗" },
+      { name: "Pasta", emoji: "🍝" },
+      { name: "Pizza", emoji: "🍕" },
+      { name: "Rice", emoji: "🍚" },
+    ],
   },
   {
     id: "dinner",
-    title: "DINNER",
+    title: "Dinner",
     emoji: "🍝",
     description: "Evening meals",
-    color: "bg-gradient-to-br from-red-400 to-pink-400",
+    color: "bg-gradient-to-br from-rose-500 to-pink-500",
+    foods: [
+      { name: "Chicken", emoji: "🍗" },
+      { name: "Fish", emoji: "🐟" },
+      { name: "Pasta", emoji: "🍝" },
+      { name: "Rice Bowl", emoji: "🍛" },
+      { name: "Soup", emoji: "🍲" },
+      { name: "Vegetables", emoji: "🥦" },
+    ],
   },
   {
     id: "snacks",
-    title: "SNACKS",
+    title: "Snacks",
     emoji: "🍪",
-    description: "Yummy treats",
-    color: "bg-gradient-to-br from-purple-400 to-indigo-400",
+    description: "Treats & bites",
+    color: "bg-gradient-to-br from-violet-500 to-purple-500",
+    foods: [
+      { name: "Cookies", emoji: "🍪" },
+      { name: "Crackers", emoji: "🍘" },
+      { name: "Fruit", emoji: "🍓" },
+      { name: "Chips", emoji: "🍟" },
+      { name: "Nuts", emoji: "🥜" },
+      { name: "Cheese", emoji: "🧀" },
+    ],
   },
 ];
 
@@ -42,60 +76,117 @@ const foodNeeds = [
 ];
 
 const Eat = () => {
-  return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-6xl mx-auto">
-        <header className="mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <Link to="/">
-              <Button size="lg" variant="outline" className="gap-2">
-                <ArrowLeft className="h-6 w-6" />
-                Back to Home
-              </Button>
-            </Link>
+  const [selectedMeal, setSelectedMeal] = useState<string | null>(null);
+
+  const speak = (text: string) => {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.9;
+      utterance.pitch = 1.1;
+      window.speechSynthesis.speak(utterance);
+      toast.success(`Speaking: ${text}`);
+    } else {
+      toast.info(text);
+    }
+  };
+
+  const handleFoodNeed = (need: typeof foodNeeds[0]) => {
+    speak(need.text);
+  };
+
+  const handleFoodSelect = (food: { name: string; emoji: string }) => {
+    const message = `I want ${food.name}`;
+    speak(message);
+    toast.success(`Selected: ${food.emoji} ${food.name}`);
+  };
+
+  const currentMeal = mealOptions.find((m) => m.id === selectedMeal);
+
+  if (selectedMeal && currentMeal) {
+    return (
+      <div className="min-h-screen bg-background p-6 md:p-8">
+        <div className="max-w-4xl mx-auto">
+          <header className="mb-6">
+            <Button
+              onClick={() => setSelectedMeal(null)}
+              variant="ghost"
+              className="gap-2 mb-4 -ml-2"
+            >
+              <ChevronLeft className="h-5 w-5" />
+              Back
+            </Button>
+          </header>
+
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+            {currentMeal.emoji} {currentMeal.title}
+          </h1>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {currentMeal.foods.map((food, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleFoodSelect(food)}
+                className="bg-card hover:bg-muted/50 border border-border text-card-foreground rounded-lg p-5 shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+              >
+                <div className="text-4xl mb-2">{food.emoji}</div>
+                <div className="text-base font-medium">{food.name}</div>
+              </button>
+            ))}
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-background p-6 md:p-8">
+      <div className="max-w-4xl mx-auto">
+        <header className="mb-6">
+          <Link to="/">
+            <Button variant="ghost" className="gap-2 -ml-2">
+              <ArrowLeft className="h-5 w-5" />
+              Back
+            </Button>
+          </Link>
         </header>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
-          Mealtime! 🍕
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+          Mealtime
         </h1>
 
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-4">Tell us what you need:</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <h2 className="text-lg font-semibold text-foreground mb-3">What do you need?</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             {foodNeeds.map((need) => (
               <Button
                 key={need.id}
-                size="lg"
-                className="h-24 flex flex-col gap-2 bg-primary hover:bg-primary/90"
+                variant="outline"
+                onClick={() => handleFoodNeed(need)}
+                className="h-20 flex flex-col gap-1.5 border-border hover:bg-muted/50"
               >
-                <span className="text-4xl">{need.emoji}</span>
-                <span className="text-sm">{need.text}</span>
+                <span className="text-2xl">{need.emoji}</span>
+                <span className="text-xs font-medium">{need.text}</span>
               </Button>
             ))}
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold text-foreground mb-4">Choose your meal:</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <h2 className="text-lg font-semibold text-foreground mb-3">Choose a meal</h2>
+        <div className="grid grid-cols-2 gap-3">
           {mealOptions.map((meal) => (
-            <Card
+            <button
               key={meal.id}
-              className={`${meal.color} border-none text-white cursor-pointer hover:scale-105 transition-transform`}
+              onClick={() => setSelectedMeal(meal.id)}
+              className={`${meal.color} border-none text-white rounded-xl p-5 cursor-pointer hover:-translate-y-1 active:translate-y-0 transition-all duration-200 shadow-md`}
             >
-              <CardHeader className="text-center">
-                <div className="text-7xl mb-4">{meal.emoji}</div>
-                <CardTitle className="text-3xl">{meal.title}</CardTitle>
-                <CardDescription className="text-white/90 text-lg">
+              <div className="text-center">
+                <div className="text-5xl mb-3">{meal.emoji}</div>
+                <div className="text-xl font-bold mb-1">{meal.title}</div>
+                <div className="text-white/80 text-sm">
                   {meal.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <Button size="lg" variant="secondary" className="w-full">
-                  SEE OPTIONS
-                </Button>
-              </CardContent>
-            </Card>
+                </div>
+              </div>
+            </button>
           ))}
         </div>
       </div>

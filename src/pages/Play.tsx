@@ -8,31 +8,31 @@ import { toast } from "sonner";
 const games = [
   {
     id: "cause-effect",
-    title: "CAUSE & EFFECT",
+    title: "Cause & Effect",
     emoji: "✨",
-    description: "Touch to create fun effects",
-    color: "bg-gradient-to-br from-pink-400 to-pink-600",
+    description: "Touch for effects",
+    color: "bg-gradient-to-br from-pink-500 to-rose-500",
   },
   {
     id: "music",
-    title: "MUSIC MAKER",
+    title: "Music Maker",
     emoji: "🎹",
-    description: "Make beautiful sounds",
-    color: "bg-gradient-to-br from-purple-400 to-purple-600",
+    description: "Make sounds",
+    color: "bg-gradient-to-br from-purple-500 to-violet-500",
   },
   {
     id: "story",
-    title: "STORY TIME",
+    title: "Story Time",
     emoji: "📚",
-    description: "Listen to fun stories",
-    color: "bg-gradient-to-br from-blue-400 to-blue-600",
+    description: "Listen to stories",
+    color: "bg-gradient-to-br from-blue-500 to-indigo-500",
   },
   {
     id: "drawing",
-    title: "DRAWING PAD",
+    title: "Drawing Pad",
     emoji: "🖍️",
-    description: "Create colorful art",
-    color: "bg-gradient-to-br from-green-400 to-green-600",
+    description: "Create art",
+    color: "bg-gradient-to-br from-emerald-500 to-teal-500",
   },
 ];
 
@@ -99,20 +99,20 @@ const CauseEffect = ({ onBack }: { onBack: () => void }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 to-purple-100 dark:from-pink-950 dark:to-purple-950 p-4">
-      <div className="max-w-6xl mx-auto">
-        <header className="mb-4 flex items-center justify-between">
-          <Button onClick={onBack} size="lg" variant="outline" className="rounded-full h-16 px-8 text-xl font-semibold border-2">
-            <ChevronLeft className="mr-3 h-6 w-6" />
+    <div className="min-h-screen bg-background p-6 md:p-8">
+      <div className="max-w-4xl mx-auto">
+        <header className="page-header">
+          <Button onClick={onBack} variant="ghost" className="back-button">
+            <ChevronLeft className="h-5 w-5" />
             Back
           </Button>
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground">✨ Cause & Effect ✨</h1>
-          <div className="w-32"></div>
         </header>
-        
-        <Card className="p-4 bg-card rounded-3xl shadow-xl border-2">
+
+        <h1 className="page-title">✨ Cause & Effect</h1>
+
+        <Card className="p-4 bg-card rounded-xl border border-border">
           <div className="text-center mb-4">
-            <p className="text-xl text-muted-foreground">Touch anywhere to create magical effects!</p>
+            <p className="text-base text-muted-foreground">Touch anywhere to create effects!</p>
           </div>
           <div
             ref={containerRef}
@@ -544,66 +544,41 @@ const Play = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-background p-6 md:p-8">
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <header className="mb-8 flex items-center justify-between">
+        <header className="page-header">
           <Link to="/">
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="rounded-full h-16 px-8 text-xl font-semibold border-2"
-            >
-              <ArrowLeft className="mr-3 h-6 w-6" />
-              Back to Home
+            <Button variant="ghost" className="back-button">
+              <ArrowLeft className="h-5 w-5" />
+              Back
             </Button>
           </Link>
-          <Button 
-            size="lg" 
-            variant="outline"
-            className="rounded-full h-16 w-16 p-0 border-2 hover:border-yellow-400"
-          >
-            <Star className="h-8 w-8 text-yellow-400 fill-yellow-400" />
-            <span className="sr-only">Favorites</span>
-          </Button>
         </header>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
-          Choose Your Game 🎪
-        </h1>
+        <h1 className="page-title">Play & Games</h1>
 
         {/* Games Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-2 gap-3">
           {games.map((game) => (
             <button
               key={game.id}
               onClick={() => setSelectedGame(game.id)}
-              className={`${game.color} text-white rounded-3xl p-8 shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 min-h-[200px] group`}
+              className={`${game.color} text-white rounded-xl p-5 shadow-md hover:-translate-y-1 active:translate-y-0 transition-all duration-200`}
             >
-              <div className="flex flex-col items-center justify-center text-center h-full">
-                <div className="text-7xl mb-4 transform group-hover:scale-110 transition-transform">
+              <div className="flex flex-col items-center justify-center text-center">
+                <div className="emoji-large mb-3">
                   {game.emoji}
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                <h2 className="text-xl font-bold mb-1">
                   {game.title}
                 </h2>
-                <p className="text-lg opacity-90">
+                <p className="text-sm text-white/80">
                   {game.description}
                 </p>
               </div>
             </button>
           ))}
-        </div>
-
-        {/* Recommendation */}
-        <div className="bg-accent/20 border-4 border-accent rounded-3xl p-6 md:p-8 text-center">
-          <div className="text-5xl mb-3">🧱</div>
-          <h3 className="text-2xl md:text-3xl font-bold text-accent-foreground mb-2">
-            Recommended: Building Blocks
-          </h3>
-          <p className="text-xl text-accent-foreground/80">
-            Based on your recent activity
-          </p>
         </div>
       </div>
     </div>

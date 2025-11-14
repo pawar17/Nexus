@@ -6,17 +6,17 @@ import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
 
 const quickMessages = [
-  { id: 1, text: "I'M HAPPY", emoji: "😄", color: "bg-yellow-400" },
-  { id: 2, text: "I NEED HELP", emoji: "🙋", color: "bg-red-400" },
-  { id: 3, text: "YES", emoji: "✅", color: "bg-green-400" },
-  { id: 4, text: "NO", emoji: "❌", color: "bg-orange-400" },
+  { id: 1, text: "I'm happy", emoji: "😄", color: "bg-yellow-500" },
+  { id: 2, text: "I need help", emoji: "🙋", color: "bg-rose-500" },
+  { id: 3, text: "Yes", emoji: "✅", color: "bg-emerald-500" },
+  { id: 4, text: "No", emoji: "❌", color: "bg-orange-500" },
 ];
 
 const categories = [
-  { id: "feel", label: "FEEL", emoji: "💝", color: "bg-pink-400" },
-  { id: "want", label: "WANT", emoji: "🎁", color: "bg-blue-400" },
-  { id: "hurt", label: "HURT", emoji: "🩹", color: "bg-red-400" },
-  { id: "play", label: "PLAY", emoji: "🎪", color: "bg-purple-400" },
+  { id: "feel", label: "Feel", emoji: "💝", color: "bg-pink-500" },
+  { id: "want", label: "Want", emoji: "🎁", color: "bg-blue-500" },
+  { id: "hurt", label: "Hurt", emoji: "🩹", color: "bg-rose-500" },
+  { id: "play", label: "Play", emoji: "🎪", color: "bg-purple-500" },
 ];
 
 const categoryMessages: Record<string, { text: string; emoji: string }[]> = {
@@ -141,12 +141,12 @@ const Talk = () => {
   };
 
   const builderCategories = [
-    { id: "all", label: "ALL", emoji: "🔤" },
-    { id: "starters", label: "START", emoji: "🚀" },
-    { id: "actions", label: "DO", emoji: "⚡" },
-    { id: "objects", label: "THINGS", emoji: "📦" },
-    { id: "feelings", label: "FEEL", emoji: "💝" },
-    { id: "common", label: "COMMON", emoji: "⭐" },
+    { id: "all", label: "All", emoji: "🔤" },
+    { id: "starters", label: "Start", emoji: "🚀" },
+    { id: "actions", label: "Do", emoji: "⚡" },
+    { id: "objects", label: "Things", emoji: "📦" },
+    { id: "feelings", label: "Feel", emoji: "💝" },
+    { id: "common", label: "Common", emoji: "⭐" },
   ];
 
   const filteredWords = builderCategory === "all" 
@@ -154,74 +154,72 @@ const Talk = () => {
     : messageBuilderWords.filter((word) => word.category === builderCategory);
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-background p-6 md:p-8">
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <header className="mb-8 flex items-center justify-between">
+        <header className="page-header">
           <Link to="/">
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="rounded-full h-16 px-8 text-xl font-semibold border-2"
-            >
-              <ArrowLeft className="mr-3 h-6 w-6" />
-              Back to Home
+            <Button variant="ghost" className="back-button">
+              <ArrowLeft className="h-5 w-5" />
+              Back
             </Button>
           </Link>
         </header>
 
+        <h1 className="page-title">Communication</h1>
+
         {/* Quick Messages */}
-        <section className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+        <section className="mb-6">
+          <h2 className="text-lg font-semibold mb-3 text-foreground">
             Quick Messages
           </h2>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {quickMessages.map((msg) => (
               <button
                 key={msg.id}
                 onClick={() => handleQuickMessage(msg.text)}
-                className={`${msg.color} text-white rounded-3xl p-8 shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 min-h-[140px]`}
+                className={`${msg.color} text-white rounded-xl p-5 shadow-md hover:-translate-y-1 active:translate-y-0 transition-all duration-200 min-h-[100px]`}
               >
-                <div className="text-5xl mb-2">{msg.emoji}</div>
-                <div className="text-xl md:text-2xl font-bold">{msg.text}</div>
+                <div className="emoji-medium mb-2">{msg.emoji}</div>
+                <div className="text-base font-semibold">{msg.text}</div>
               </button>
             ))}
           </div>
         </section>
 
         {/* Categories */}
-        <section className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+        <section className="mb-6">
+          <h2 className="text-lg font-semibold mb-3 text-foreground">
             Categories
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(selectedCategory === cat.id ? null : cat.id)}
-                className={`${cat.color} text-white rounded-3xl p-6 shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 ${
-                  selectedCategory === cat.id ? "ring-4 ring-white ring-offset-4" : ""
+                className={`${cat.color} text-white rounded-xl p-4 shadow-md hover:-translate-y-1 active:translate-y-0 transition-all duration-200 min-h-[90px] ${
+                  selectedCategory === cat.id ? "ring-2 ring-offset-2 ring-foreground" : ""
                 }`}
               >
-                <div className="text-4xl mb-2">{cat.emoji}</div>
-                <div className="text-lg md:text-xl font-bold">{cat.label}</div>
+                <div className="emoji-medium mb-1">{cat.emoji}</div>
+                <div className="text-base font-semibold">{cat.label}</div>
               </button>
             ))}
           </div>
 
           {/* Category Messages */}
           {selectedCategory && (
-            <Card className="p-6 bg-card rounded-3xl shadow-xl border-2">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card className="p-4 bg-card rounded-xl border border-border">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {categoryMessages[selectedCategory]?.map((msg, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleCategoryMessage(msg.text)}
-                    className="bg-secondary hover:bg-secondary/80 text-secondary-foreground rounded-2xl p-6 shadow-md hover:scale-105 active:scale-95 transition-all duration-200 text-left"
+                    className="interactive-button text-left"
                   >
-                    <div className="flex items-center gap-4">
-                      <span className="text-4xl">{msg.emoji}</span>
-                      <span className="text-xl font-semibold">{msg.text}</span>
+                    <div className="flex items-center gap-3">
+                      <span className="emoji-medium">{msg.emoji}</span>
+                      <span className="text-base font-medium">{msg.text}</span>
                     </div>
                   </button>
                 ))}
@@ -231,14 +229,14 @@ const Talk = () => {
         </section>
 
         {/* Message Builder */}
-        <section className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+        <section className="mb-6">
+          <h2 className="text-lg font-semibold mb-3 text-foreground">
             Message Builder
           </h2>
-          <Card className="p-6 bg-card rounded-3xl shadow-xl border-2">
+          <Card className="p-4 bg-card rounded-xl border border-border">
             {/* Message Display */}
-            <div className="bg-muted rounded-2xl p-6 mb-4 min-h-[100px] flex items-center">
-              <p className="text-2xl md:text-3xl text-foreground font-medium break-words">
+            <div className="bg-muted rounded-lg p-4 mb-4 min-h-[80px] flex items-center">
+              <p className="text-xl text-foreground font-medium break-words">
                 {message || "Build your message..."}
               </p>
             </div>
@@ -250,13 +248,13 @@ const Talk = () => {
                   <button
                     key={cat.id}
                     onClick={() => setBuilderCategory(cat.id)}
-                    className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                       builderCategory === cat.id
-                        ? "bg-primary text-primary-foreground shadow-lg scale-105"
+                        ? "bg-primary text-primary-foreground"
                         : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                     }`}
                   >
-                    <span className="mr-2">{cat.emoji}</span>
+                    <span className="mr-1.5">{cat.emoji}</span>
                     {cat.label}
                   </button>
                 ))}
@@ -264,17 +262,17 @@ const Talk = () => {
             </div>
 
             {/* Word Buttons */}
-            <div className="mb-4 max-h-[400px] overflow-y-auto">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            <div className="mb-4 max-h-[300px] overflow-y-auto">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {filteredWords.map((word, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleBuilderWord(word.text)}
-                    className="bg-secondary hover:bg-secondary/80 text-secondary-foreground rounded-xl p-4 shadow-md hover:scale-105 active:scale-95 transition-all duration-200 text-left"
+                    className="interactive-button text-left min-h-[70px]"
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">{word.emoji}</span>
-                      <span className="text-base font-semibold">{word.text}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="emoji-small">{word.emoji}</span>
+                      <span className="text-sm font-medium">{word.text}</span>
                     </div>
                   </button>
                 ))}
@@ -282,35 +280,30 @@ const Talk = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-2">
               <Button
-                size="lg"
                 onClick={() => message && speak(message)}
                 disabled={!message}
-                className="flex-1 min-w-[200px] h-16 rounded-full text-xl font-bold"
+                className="flex-1 min-w-[150px]"
               >
-                <Volume2 className="mr-3 h-6 w-6" />
-                SPEAK
+                <Volume2 className="mr-2 h-5 w-5" />
+                Speak
               </Button>
               <Button
-                size="lg"
-                variant="secondary"
+                variant="outline"
                 onClick={handleRemoveLastWord}
                 disabled={!message}
-                className="h-16 px-8 rounded-full text-xl font-bold"
               >
-                <Delete className="mr-3 h-6 w-6" />
-                UNDO
+                <Delete className="mr-2 h-5 w-5" />
+                Undo
               </Button>
               <Button
-                size="lg"
-                variant="secondary"
+                variant="outline"
                 onClick={() => setMessage("")}
                 disabled={!message}
-                className="h-16 px-8 rounded-full text-xl font-bold"
               >
-                <Edit className="mr-3 h-6 w-6" />
-                CLEAR
+                <Edit className="mr-2 h-5 w-5" />
+                Clear
               </Button>
             </div>
           </Card>

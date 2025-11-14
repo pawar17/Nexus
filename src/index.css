@@ -1,108 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* Accessible, high-contrast kid-friendly palette */
-    --background: 220 25% 98%;
-    --foreground: 220 20% 10%;
+    /* Refined, accessible palette with better contrast */
+    --background: 0 0% 98%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 10%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 10%;
+    --popover-foreground: 222 47% 11%;
 
-    /* Bright sky blue - primary brand */
-    --primary: 205 100% 50%;
+    /* Refined primary - less saturated */
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
 
-    /* Soft lavender for secondary actions */
-    --secondary: 250 50% 90%;
-    --secondary-foreground: 250 50% 25%;
+    /* Refined secondary */
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 220 15% 92%;
-    --muted-foreground: 220 15% 45%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 45 100% 55%;
-    --accent-foreground: 45 100% 15%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
 
-    --destructive: 0 85% 55%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 85%;
-    --input: 220 20% 95%;
-    --ring: 205 100% 50%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
 
-    --radius: 1.5rem;
+    --radius: 0.75rem;
 
-    /* Activity-specific colors */
-    --activity-talk: 340 85% 60%;      /* Coral pink */
-    --activity-play: 155 75% 50%;      /* Fresh green */
-    --activity-learn: 205 100% 50%;    /* Sky blue */
-    --activity-rest: 270 65% 65%;      /* Soft purple */
-    --activity-eat: 35 95% 55%;        /* Warm orange */
-    --activity-therapy: 290 70% 60%;   /* Vibrant purple */
+    /* Refined activity colors - WCAG AA compliant */
+    --activity-talk: 346 70% 48%;
+    --activity-play: 142 65% 45%;
+    --activity-learn: 217 80% 55%;
+    --activity-rest: 250 70% 58%;
+    --activity-eat: 24 85% 50%;
+    --activity-therapy: 291 55% 48%;
 
-    /* Shadows for depth */
-    --shadow-sm: 0 2px 8px hsl(220 20% 10% / 0.1);
-    --shadow-md: 0 4px 16px hsl(220 20% 10% / 0.12);
-    --shadow-lg: 0 8px 24px hsl(220 20% 10% / 0.15);
-    
-    /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Subtle shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    /* Smoother transitions */
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    /* High contrast dark mode */
-    --background: 220 20% 12%;
-    --foreground: 220 15% 95%;
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
 
-    --card: 220 20% 15%;
-    --card-foreground: 220 15% 95%;
+    --card: 222 47% 15%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 220 20% 15%;
-    --popover-foreground: 220 15% 95%;
+    --popover: 222 47% 15%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 205 100% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
 
-    --secondary: 250 40% 25%;
-    --secondary-foreground: 250 40% 90%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 220 15% 20%;
-    --muted-foreground: 220 15% 60%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 45 100% 60%;
-    --accent-foreground: 45 100% 10%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 85% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 220 20% 25%;
-    --input: 220 20% 20%;
-    --ring: 205 100% 60%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 224 76% 48%;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -120,15 +115,26 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-size: 18px;
-    line-height: 1.6;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', 'Inter', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
   /* Ensure minimum touch target size */
   button, a, [role="button"] {
-    min-width: 60px;
-    min-height: 60px;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   /* Reduced motion support */
@@ -144,41 +150,77 @@ All colors MUST be HSL.
 }
 
 @layer components {
-  /* Activity card styles */
+  /* Activity card styles - accessible and consistent */
   .activity-card {
-    @apply relative overflow-hidden rounded-[2rem] p-8 shadow-lg transition-all duration-300;
-    @apply hover:scale-105 hover:shadow-xl active:scale-95;
-    min-height: 180px;
+    @apply relative overflow-hidden rounded-xl p-6 transition-all duration-200;
+    @apply hover:-translate-y-1 hover:shadow-lg active:translate-y-0;
+    min-height: 160px;
     cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   .activity-card-talk {
-    background: linear-gradient(135deg, hsl(var(--activity-talk)) 0%, hsl(var(--activity-talk) / 0.85) 100%);
-    @apply text-white;
+    background: linear-gradient(135deg, hsl(var(--activity-talk)) 0%, hsl(var(--activity-talk) / 0.9) 100%);
+    @apply text-white shadow-md;
   }
 
   .activity-card-play {
-    background: linear-gradient(135deg, hsl(var(--activity-play)) 0%, hsl(var(--activity-play) / 0.85) 100%);
-    @apply text-white;
+    background: linear-gradient(135deg, hsl(var(--activity-play)) 0%, hsl(var(--activity-play) / 0.9) 100%);
+    @apply text-white shadow-md;
   }
 
   .activity-card-learn {
-    background: linear-gradient(135deg, hsl(var(--activity-learn)) 0%, hsl(var(--activity-learn) / 0.85) 100%);
-    @apply text-white;
+    background: linear-gradient(135deg, hsl(var(--activity-learn)) 0%, hsl(var(--activity-learn) / 0.9) 100%);
+    @apply text-white shadow-md;
   }
 
   .activity-card-rest {
-    background: linear-gradient(135deg, hsl(var(--activity-rest)) 0%, hsl(var(--activity-rest) / 0.85) 100%);
-    @apply text-white;
+    background: linear-gradient(135deg, hsl(var(--activity-rest)) 0%, hsl(var(--activity-rest) / 0.9) 100%);
+    @apply text-white shadow-md;
   }
 
   .activity-card-eat {
-    background: linear-gradient(135deg, hsl(var(--activity-eat)) 0%, hsl(var(--activity-eat) / 0.85) 100%);
-    @apply text-white;
+    background: linear-gradient(135deg, hsl(var(--activity-eat)) 0%, hsl(var(--activity-eat) / 0.9) 100%);
+    @apply text-white shadow-md;
   }
 
   .activity-card-therapy {
-    background: linear-gradient(135deg, hsl(var(--activity-therapy)) 0%, hsl(var(--activity-therapy) / 0.85) 100%);
-    @apply text-white;
+    background: linear-gradient(135deg, hsl(var(--activity-therapy)) 0%, hsl(var(--activity-therapy) / 0.9) 100%);
+    @apply text-white shadow-md;
+  }
+
+  /* Standardized page header */
+  .page-header {
+    @apply mb-6;
+  }
+
+  .back-button {
+    @apply gap-2 -ml-2;
+  }
+
+  .page-title {
+    @apply text-2xl md:text-3xl font-bold text-foreground mb-6;
+  }
+
+  /* Standardized interactive button - large touch targets */
+  .interactive-button {
+    @apply bg-card hover:bg-muted/50 border border-border text-card-foreground;
+    @apply rounded-lg p-5 shadow-sm hover:-translate-y-0.5 active:translate-y-0;
+    @apply transition-all duration-200;
+    min-height: 80px; /* Minimum for accessibility */
+    min-width: 80px;
+  }
+
+  /* Standardized emoji size for consistency */
+  .emoji-large {
+    @apply text-5xl;
+  }
+
+  .emoji-medium {
+    @apply text-4xl;
+  }
+
+  .emoji-small {
+    @apply text-2xl;
   }
 }

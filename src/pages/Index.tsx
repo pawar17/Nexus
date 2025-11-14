@@ -62,26 +62,26 @@ const Index = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-background p-6 md:p-8">
+      <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <header className="mb-8 md:mb-12">
-          <div className="flex items-center justify-between mb-6">
+        <header className="mb-10">
+          <div className="flex items-start justify-between mb-8">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2">
-                Hi {childName}! <span className="inline-block animate-bounce">🌟</span>
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-1">
+                Hi {childName}!
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground font-medium">
+              <p className="text-base md:text-lg text-muted-foreground">
                 {currentTime}
               </p>
             </div>
             <Link to="/settings">
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="rounded-full h-16 w-16 p-0 border-2 hover:border-primary"
+              <Button
+                size="lg"
+                variant="ghost"
+                className="rounded-full h-12 w-12 p-0 hover:bg-muted"
               >
-                <Settings className="h-8 w-8" />
+                <Settings className="h-5 w-5" />
                 <span className="sr-only">Settings</span>
               </Button>
             </Link>
@@ -89,7 +89,7 @@ const Index = () => {
         </header>
 
         {/* Activity Grid */}
-        <div className="grid grid-cols-2 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 gap-3 md:gap-4">
           {activities.map((activity) => {
             const Icon = activity.icon;
             return (
@@ -99,10 +99,10 @@ const Index = () => {
                 className={`activity-card ${activity.className} group`}
               >
                 <div className="flex flex-col items-center justify-center h-full text-center">
-                  <div className="text-6xl md:text-7xl mb-4 transform group-hover:scale-110 transition-transform">
+                  <div className="text-4xl md:text-5xl mb-3 transform group-hover:scale-105 transition-transform duration-200">
                     {activity.emoji}
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold tracking-wide">
+                  <h2 className="text-lg md:text-xl font-semibold tracking-tight">
                     {activity.title}
                   </h2>
                 </div>
@@ -112,8 +112,8 @@ const Index = () => {
         </div>
 
         {/* Footer hint */}
-        <footer className="mt-12 text-center text-muted-foreground">
-          <p className="text-lg">Tap any activity to get started</p>
+        <footer className="mt-8 text-center">
+          <p className="text-sm text-muted-foreground">Tap any activity to get started</p>
         </footer>
       </div>
     </div>
