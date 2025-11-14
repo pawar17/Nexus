@@ -47,6 +47,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        activity: {
+          talk: "hsl(var(--activity-talk))",
+          play: "hsl(var(--activity-play))",
+          learn: "hsl(var(--activity-learn))",
+          rest: "hsl(var(--activity-rest))",
+          eat: "hsl(var(--activity-eat))",
+          therapy: "hsl(var(--activity-therapy))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

@@ -8,35 +8,54 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Accessible, high-contrast kid-friendly palette */
+    --background: 220 25% 98%;
+    --foreground: 220 20% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 20% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 20% 10%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Bright sky blue - primary brand */
+    --primary: 205 100% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Soft lavender for secondary actions */
+    --secondary: 250 50% 90%;
+    --secondary-foreground: 250 50% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 100% 55%;
+    --accent-foreground: 45 100% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 20% 85%;
+    --input: 220 20% 95%;
+    --ring: 205 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 1.5rem;
+
+    /* Activity-specific colors */
+    --activity-talk: 340 85% 60%;      /* Coral pink */
+    --activity-play: 155 75% 50%;      /* Fresh green */
+    --activity-learn: 205 100% 50%;    /* Sky blue */
+    --activity-rest: 270 65% 65%;      /* Soft purple */
+    --activity-eat: 35 95% 55%;        /* Warm orange */
+    --activity-therapy: 290 70% 60%;   /* Vibrant purple */
+
+    /* Shadows for depth */
+    --shadow-sm: 0 2px 8px hsl(220 20% 10% / 0.1);
+    --shadow-md: 0 4px 16px hsl(220 20% 10% / 0.12);
+    --shadow-lg: 0 8px 24px hsl(220 20% 10% / 0.15);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,33 +75,34 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* High contrast dark mode */
+    --background: 220 20% 12%;
+    --foreground: 220 15% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 20% 15%;
+    --card-foreground: 220 15% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 20% 15%;
+    --popover-foreground: 220 15% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 205 100% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 250 40% 25%;
+    --secondary-foreground: 250 40% 90%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 15% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 45 100% 60%;
+    --accent-foreground: 45 100% 10%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 220 20% 25%;
+    --input: 220 20% 20%;
+    --ring: 205 100% 60%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +120,65 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  /* Ensure minimum touch target size */
+  button, a, [role="button"] {
+    min-width: 60px;
+    min-height: 60px;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Activity card styles */
+  .activity-card {
+    @apply relative overflow-hidden rounded-[2rem] p-8 shadow-lg transition-all duration-300;
+    @apply hover:scale-105 hover:shadow-xl active:scale-95;
+    min-height: 180px;
+    cursor: pointer;
+  }
+
+  .activity-card-talk {
+    background: linear-gradient(135deg, hsl(var(--activity-talk)) 0%, hsl(var(--activity-talk) / 0.85) 100%);
+    @apply text-white;
+  }
+
+  .activity-card-play {
+    background: linear-gradient(135deg, hsl(var(--activity-play)) 0%, hsl(var(--activity-play) / 0.85) 100%);
+    @apply text-white;
+  }
+
+  .activity-card-learn {
+    background: linear-gradient(135deg, hsl(var(--activity-learn)) 0%, hsl(var(--activity-learn) / 0.85) 100%);
+    @apply text-white;
+  }
+
+  .activity-card-rest {
+    background: linear-gradient(135deg, hsl(var(--activity-rest)) 0%, hsl(var(--activity-rest) / 0.85) 100%);
+    @apply text-white;
+  }
+
+  .activity-card-eat {
+    background: linear-gradient(135deg, hsl(var(--activity-eat)) 0%, hsl(var(--activity-eat) / 0.85) 100%);
+    @apply text-white;
+  }
+
+  .activity-card-therapy {
+    background: linear-gradient(135deg, hsl(var(--activity-therapy)) 0%, hsl(var(--activity-therapy) / 0.85) 100%);
+    @apply text-white;
   }
 }
