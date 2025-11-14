@@ -9,7 +9,7 @@ const activities = [
     icon: MessageSquare,
     path: "/talk",
     className: "activity-card-talk",
-    emoji: "👄",
+    emoji: "💬",
   },
   {
     id: "play",
@@ -17,7 +17,7 @@ const activities = [
     icon: Gamepad2,
     path: "/play",
     className: "activity-card-play",
-    emoji: "🎮",
+    emoji: "🎨",
   },
   {
     id: "learn",
@@ -25,7 +25,7 @@ const activities = [
     icon: BookOpen,
     path: "/learn",
     className: "activity-card-learn",
-    emoji: "📚",
+    emoji: "🌈",
   },
   {
     id: "rest",
@@ -33,7 +33,7 @@ const activities = [
     icon: Moon,
     path: "/rest",
     className: "activity-card-rest",
-    emoji: "🛏️",
+    emoji: "🌙",
   },
   {
     id: "eat",
@@ -41,7 +41,7 @@ const activities = [
     icon: Utensils,
     path: "/eat",
     className: "activity-card-eat",
-    emoji: "🍽️",
+    emoji: "🍕",
   },
   {
     id: "therapy",
@@ -49,7 +49,7 @@ const activities = [
     icon: HeartPulse,
     path: "/therapy",
     className: "activity-card-therapy",
-    emoji: "💪",
+    emoji: "⭐",
   },
 ];
 

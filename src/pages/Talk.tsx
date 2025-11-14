@@ -6,28 +6,28 @@ import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
 
 const quickMessages = [
-  { id: 1, text: "I'M HAPPY", emoji: "😊", color: "bg-yellow-400" },
-  { id: 2, text: "I NEED HELP", emoji: "🆘", color: "bg-red-400" },
-  { id: 3, text: "YES", emoji: "👍", color: "bg-green-400" },
-  { id: 4, text: "NO", emoji: "👎", color: "bg-orange-400" },
+  { id: 1, text: "I'M HAPPY", emoji: "😄", color: "bg-yellow-400" },
+  { id: 2, text: "I NEED HELP", emoji: "🙋", color: "bg-red-400" },
+  { id: 3, text: "YES", emoji: "✅", color: "bg-green-400" },
+  { id: 4, text: "NO", emoji: "❌", color: "bg-orange-400" },
 ];
 
 const categories = [
-  { id: "feel", label: "FEEL", emoji: "😊", color: "bg-pink-400" },
-  { id: "want", label: "WANT", emoji: "🤲", color: "bg-blue-400" },
-  { id: "hurt", label: "HURT", emoji: "🤕", color: "bg-red-400" },
-  { id: "play", label: "PLAY", emoji: "🎮", color: "bg-purple-400" },
+  { id: "feel", label: "FEEL", emoji: "💝", color: "bg-pink-400" },
+  { id: "want", label: "WANT", emoji: "🎁", color: "bg-blue-400" },
+  { id: "hurt", label: "HURT", emoji: "🩹", color: "bg-red-400" },
+  { id: "play", label: "PLAY", emoji: "🎪", color: "bg-purple-400" },
 ];
 
 const categoryMessages: Record<string, { text: string; emoji: string }[]> = {
   feel: [
-    { text: "I'm happy", emoji: "😊" },
+    { text: "I'm happy", emoji: "😄" },
     { text: "I'm sad", emoji: "😢" },
     { text: "I'm tired", emoji: "😴" },
-    { text: "I'm excited", emoji: "🤩" },
+    { text: "I'm excited", emoji: "🎉" },
   ],
   want: [
-    { text: "I want to play", emoji: "🎮" },
+    { text: "I want to play", emoji: "🎪" },
     { text: "I want water", emoji: "💧" },
     { text: "I want music", emoji: "🎵" },
     { text: "I want a hug", emoji: "🤗" },
@@ -35,14 +35,14 @@ const categoryMessages: Record<string, { text: string; emoji: string }[]> = {
   hurt: [
     { text: "My head hurts", emoji: "🤕" },
     { text: "My tummy hurts", emoji: "🤒" },
-    { text: "I need help", emoji: "🆘" },
+    { text: "I need help", emoji: "🙋" },
     { text: "I'm uncomfortable", emoji: "😣" },
   ],
   play: [
     { text: "Let's play games", emoji: "🎮" },
-    { text: "Read me a story", emoji: "📖" },
+    { text: "Read me a story", emoji: "📚" },
     { text: "I want toys", emoji: "🧸" },
-    { text: "Let's draw", emoji: "🎨" },
+    { text: "Let's draw", emoji: "🖍️" },
   ],
 };
 
