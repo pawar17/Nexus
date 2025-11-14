@@ -6,28 +6,28 @@ const games = [
   {
     id: "cause-effect",
     title: "CAUSE & EFFECT",
-    emoji: "🎯",
+    emoji: "✨",
     description: "Touch to create fun effects",
     color: "bg-gradient-to-br from-pink-400 to-pink-600",
   },
   {
     id: "music",
     title: "MUSIC MAKER",
-    emoji: "🎵",
+    emoji: "🎹",
     description: "Make beautiful sounds",
     color: "bg-gradient-to-br from-purple-400 to-purple-600",
   },
   {
     id: "story",
     title: "STORY TIME",
-    emoji: "📖",
+    emoji: "📚",
     description: "Listen to fun stories",
     color: "bg-gradient-to-br from-blue-400 to-blue-600",
   },
   {
     id: "drawing",
     title: "DRAWING PAD",
-    emoji: "🎨",
+    emoji: "🖍️",
     description: "Create colorful art",
     color: "bg-gradient-to-br from-green-400 to-green-600",
   },
@@ -60,7 +60,7 @@ const Play = () => {
         </header>
 
         <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
-          Choose Your Game 🎮
+          Choose Your Game 🎪
         </h1>
 
         {/* Games Grid */}
