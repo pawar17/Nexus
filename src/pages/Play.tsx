@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Star, RotateCcw, Trash2, Volume2, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
+import { ArrowLeft, Star, RotateCcw, Trash2, Volume2, ChevronLeft, ChevronRight, Play as PlayIcon, Pause } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
@@ -347,7 +347,7 @@ const StoryTime = ({ onBack }: { onBack: () => void }) => {
                 </>
               ) : (
                 <>
-                  <Play className="mr-3 h-6 w-6" />
+                  <PlayIcon className="mr-3 h-6 w-6" />
                   PLAY STORY
                 </>
               )}
