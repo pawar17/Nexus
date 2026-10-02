@@ -84,7 +84,7 @@ A PIN-protected panel, kept off the child's scan path, where caregivers:
 
 ## Tech stack
 
-React · TypeScript · Vite · Tailwind CSS · Web Speech API · Web Audio API · deployed to GitHub Pages with GitHub Actions
+React · TypeScript · Vite · Tailwind CSS · Web Speech API · Web Audio API · published to GitHub Pages by a GitHub Actions workflow
 
 ## Run locally
 
