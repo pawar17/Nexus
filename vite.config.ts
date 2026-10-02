@@ -4,6 +4,8 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // Served from /Nexus/ on GitHub Pages; "/" everywhere else
+  base: process.env.BASE_PATH || "/",
   server: {
     host: "::",
     port: 8080,
