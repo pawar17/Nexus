@@ -1,24 +1,14 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Tile } from "@/components/Tile";
 
-const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
-
+export default function NotFound() {
+  const navigate = useNavigate();
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
-        <a href="/" className="text-primary underline hover:text-primary/90">
-          Return to Home
-        </a>
+    <main className="screen grid place-items-center" style={{ minHeight: "100vh" }}>
+      <div className="text-center grid gap-5" style={{ width: 280 }}>
+        <p className="text-2xl font-semibold">This page isn't here</p>
+        <Tile label="Go home" symbol="🏠" size="lg" tone="talk" onSelect={() => navigate("/")} />
       </div>
-    </div>
+    </main>
   );
-};
-
-export default NotFound;
+}
