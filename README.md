@@ -1,6 +1,6 @@
 # NEXUS
 
-**One activity-based interface for children with cerebral palsy, usable by touch, a single switch, or eye gaze.**
+**One activity-based interface for children with cerebral palsy, usable by touch, a single switch, a webcam, or an eye tracker.**
 
 ### [▶ Try the live demo](https://pawar17.github.io/Nexus/)
 
@@ -30,13 +30,14 @@ In testing, NEXUS **raised functional task independence from 10% to 80%** for ch
 
 ## What it does
 
-### Three ways to choose, on every screen
+### Four ways to choose, on every screen
 
 | Input | How it works |
 |---|---|
 | **Touch** | Tap a tile |
 | **Switch scanning** | Tiles light up one at a time with a high-visibility yellow and black ring. A switch press selects the lit tile. Space, Enter or a tap anywhere all count, so switch interfaces that send a key press work out of the box. Scan speed is adjustable |
-| **Eye gaze / dwell** | Resting the pointer on a tile fills a progress bar, then selects it. Eye trackers and head pointers drive the pointer, so this is how gaze users select. Dwell time is adjustable to prevent accidental picks |
+| **Camera (head or eye tracking)** | No extra hardware: the device's webcam tracks where the child points their head or looks, using MediaPipe face tracking that runs entirely in the browser (video never leaves the device). A five-dot calibration fits each child's range of movement, then resting the on-screen pointer on a tile selects it. Head tracking is steadier on most webcams; eye tracking works with NEXUS's large tiles in good light |
+| **Eye tracker / dwell** | For dedicated eye trackers and head pointers that move the mouse: resting the pointer on a tile fills a progress bar, then selects it. Dwell time is adjustable to prevent accidental picks |
 
 ![Dwell select filling on a tile](docs/screenshots/dwell.png)
 
@@ -84,7 +85,7 @@ A PIN-protected panel, kept off the child's scan path, where caregivers:
 
 ## Tech stack
 
-React · TypeScript · Vite · Tailwind CSS · Web Speech API · Web Audio API · published to GitHub Pages by a GitHub Actions workflow
+React · TypeScript · Vite · Tailwind CSS · MediaPipe Face Landmarker · Web Speech API · Web Audio API · published to GitHub Pages by a GitHub Actions workflow
 
 ## Run locally
 
