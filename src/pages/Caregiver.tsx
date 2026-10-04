@@ -55,7 +55,8 @@ function PinGate({ pin, onUnlock }: { pin: string; onUnlock: () => void }) {
 const modes: { id: InputMode; label: string }[] = [
   { id: "touch", label: "Touch" },
   { id: "scan", label: "Switch scan" },
-  { id: "dwell", label: "Eye gaze / dwell" },
+  { id: "camera", label: "Camera" },
+  { id: "dwell", label: "Eye tracker" },
 ];
 
 export default function Caregiver() {
@@ -162,7 +163,38 @@ export default function Caregiver() {
                 <input type="range" min={600} max={3000} step={100} value={settings.scanMs} onChange={(e) => update({ scanMs: +e.target.value })} />
               </div>
             )}
-            {settings.inputMode === "dwell" && (
+            {settings.inputMode === "camera" && (
+              <>
+                <div className="row">
+                  <label>
+                    Track with
+                    <small>Head is steadier on most webcams. Eyes need a well-lit face.</small>
+                  </label>
+                  <div className="seg" role="group" aria-label="Camera tracking source">
+                    <button aria-pressed={settings.camSource === "head"} onClick={() => update({ camSource: "head" })}>
+                      Head
+                    </button>
+                    <button aria-pressed={settings.camSource === "eyes"} onClick={() => update({ camSource: "eyes" })}>
+                      Eyes
+                    </button>
+                  </div>
+                </div>
+                <div className="row">
+                  <label>
+                    Calibration
+                    <small>{settings.camCal ? "Saved. Redo it if the pointer drifts or the child moves." : "Runs the first time the camera starts."}</small>
+                  </label>
+                  <button className="btn ghost" disabled={!settings.camCal} onClick={() => update({ camCal: null })}>
+                    Redo
+                  </button>
+                </div>
+                <div className="row">
+                  <label>Show camera preview</label>
+                  <input type="checkbox" checked={settings.camPreview} onChange={(e) => update({ camPreview: e.target.checked })} />
+                </div>
+              </>
+            )}
+            {(settings.inputMode === "dwell" || settings.inputMode === "camera") && (
               <div className="row">
                 <label>
                   Dwell time

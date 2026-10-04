@@ -1,6 +1,18 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
 
-export type InputMode = "touch" | "scan" | "dwell";
+export type InputMode = "touch" | "scan" | "dwell" | "camera";
+export type CamSource = "head" | "eyes";
+
+/** Linear map from a tracked face feature to screen coordinates, fit during calibration. */
+export interface CamCalibration {
+  source: CamSource;
+  ax: number;
+  bx: number;
+  ay: number;
+  by: number;
+  w: number;
+  h: number;
+}
 
 export interface Settings {
   childName: string;
@@ -17,6 +29,9 @@ export interface Settings {
   pin: string;
   quickPhrases: string[];
   introSeen: boolean;
+  camSource: CamSource;
+  camCal: CamCalibration | null;
+  camPreview: boolean;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -32,6 +47,9 @@ export const DEFAULT_SETTINGS: Settings = {
   pin: "1234",
   quickPhrases: ["I need help", "Yes", "No", "I'm all done", "More please", "I love you"],
   introSeen: false,
+  camSource: "head",
+  camCal: null,
+  camPreview: true,
 };
 
 export interface LogEvent {

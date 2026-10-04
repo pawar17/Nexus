@@ -439,3 +439,84 @@ input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--ink); }
   *, *::before, *::after { transition: none !important; animation-duration: 0.01ms !important; }
   [data-dwell]::after { animation-duration: var(--dwell, 1200ms) !important; }
 }
+
+/* ---------- Access: camera (head / eye tracking) ---------- */
+
+.cam-cursor {
+  position: fixed;
+  left: -22px;
+  top: -22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 99px;
+  border: 5px solid var(--scan);
+  box-shadow: 0 0 0 3px var(--ink), inset 0 0 0 3px var(--ink);
+  pointer-events: none;
+  z-index: 90;
+  transition: opacity 0.2s ease;
+  will-change: transform;
+}
+
+.cal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+}
+.cal-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 32%;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.cal-dot {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  margin: -21px 0 0 -21px;
+  border-radius: 99px;
+  background: var(--ink);
+  box-shadow: 0 0 0 10px var(--scan);
+  animation: calpulse 1.9s ease-out forwards;
+}
+@keyframes calpulse {
+  0% { transform: scale(1.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.55); opacity: 1; }
+}
+
+.cam-panel {
+  position: fixed;
+  left: 14px;
+  bottom: 14px;
+  z-index: 96;
+  width: 150px;
+  padding: 8px;
+  pointer-events: none; /* never blocks the tracked pointer from reaching a tile */
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
+  font-size: 0.8rem;
+}
+.cam-panel.compact { width: auto; }
+.cam-video {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  transform: scaleX(-1);
+  background: #000;
+  margin-bottom: 8px;
+}
+.cam-status { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+.cam-dot { width: 9px; height: 9px; border-radius: 99px; background: var(--tone-neutral); }
+.cam-dot.tracking { background: var(--tone-action); }
+.cam-dot.noface, .cam-dot.calibrating, .cam-dot.starting { background: var(--tone-people); }
+.cam-dot.error { background: #d64545; }
+.cam-btn { pointer-events: auto; margin-top: 8px; width: 100%; padding: 7px 10px; border-radius: 10px; background: var(--bg); font-weight: 600; }
+.cam-error { margin-top: 8px; color: #b42318; line-height: 1.35; }
+.cam-privacy { margin-top: 6px; color: var(--muted); font-size: 0.72rem; }

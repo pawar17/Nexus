@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { NexusProvider, useNexus } from "@/lib/store";
 import { AccessLayer } from "@/access/AccessLayer";
+import { CameraLayer } from "@/access/CameraLayer";
 import Home, { Intro } from "./pages/Home";
 import Talk from "./pages/Talk";
 import Eat from "./pages/Eat";
@@ -20,6 +21,7 @@ function Shell() {
   return (
     <>
       <AccessLayer paused={paused} />
+      <CameraLayer active={settings.inputMode === "camera" && !paused} />
       <Intro />
       <Routes>
         <Route path="/" element={<Home />} />

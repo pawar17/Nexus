@@ -17,9 +17,10 @@ const modeHint: Record<InputMode, string> = {
   touch: "Tap a tile",
   scan: "Press Space or tap anywhere",
   dwell: "Look at a tile to choose",
+  camera: "Point or look at a tile to choose",
 };
 
-const modeName: Record<InputMode, string> = { touch: "Touch", scan: "Switch scanning", dwell: "Eye gaze / dwell" };
+const modeName: Record<InputMode, string> = { touch: "Touch", scan: "Switch scanning", dwell: "Eye tracker / dwell", camera: "Camera" };
 
 export default function Home() {
   const { settings, log } = useNexus();
@@ -106,11 +107,18 @@ export function Intro() {
               <span>Tiles light up one at a time. Press Space, Enter, or tap anywhere to pick the lit one.</span>
             </div>
           </button>
+          <button className="choice" onClick={() => choose("camera")}>
+            <span className="icon">📷</span>
+            <div>
+              <b>Camera: head or eye tracking</b>
+              <span>Uses this device's camera, no extra hardware. Point your head (or look) at a tile and hold for a second. Video never leaves the device.</span>
+            </div>
+          </button>
           <button className="choice" onClick={() => choose("dwell")}>
             <span className="icon">👁️</span>
             <div>
-              <b>Eye gaze / dwell</b>
-              <span>Rest the pointer on a tile for about a second to pick it. Works with eye trackers and head pointers.</span>
+              <b>Eye tracker / dwell</b>
+              <span>For dedicated eye trackers and head pointers that move the mouse: rest on a tile for about a second to pick it.</span>
             </div>
           </button>
         </div>

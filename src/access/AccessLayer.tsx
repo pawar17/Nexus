@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNexus } from "@/lib/store";
+import { createDwell } from "./dwell";
 
 /**
  * Makes every element marked `data-target` usable without touch.
@@ -90,45 +91,22 @@ export function AccessLayer({ paused }: { paused: boolean }) {
     };
   }, [inputMode, scanMs, paused]);
 
-  // Dwell select
+  // Dwell select (mouse, eye tracker or head pointer driving the cursor)
   useEffect(() => {
     if (inputMode !== "dwell" || paused) return;
-
-    let el: HTMLElement | null = null;
-    let timer = 0;
-
-    const cancel = () => {
-      window.clearTimeout(timer);
-      el?.removeAttribute("data-dwell");
-      el = null;
-    };
-
-    const onOver = (e: PointerEvent) => {
-      const t = (e.target as HTMLElement).closest<HTMLElement>("[data-target]");
-      if (t === el) return;
-      cancel();
-      if (!t || t.hasAttribute("disabled")) return;
-      el = t;
-      t.style.setProperty("--dwell", `${dwellMs}ms`);
-      t.setAttribute("data-dwell", "");
-      timer = window.setTimeout(() => {
-        t.removeAttribute("data-dwell");
-        t.click();
-        // Stays "used" until the pointer leaves, so it can't fire twice
-      }, dwellMs);
-    };
-    const onLeaveWindow = () => cancel();
+    const dwell = createDwell(() => dwellMs);
+    const onOver = (e: PointerEvent) => dwell.hover((e.target as HTMLElement).closest<HTMLElement>("[data-target]"));
+    const onLeave = () => dwell.clear();
     const onClick = (e: MouseEvent) => {
-      if (e.isTrusted) cancel();
+      if (e.isTrusted) dwell.clear();
     };
-
     document.addEventListener("pointerover", onOver);
-    document.addEventListener("pointerleave", onLeaveWindow);
+    document.addEventListener("pointerleave", onLeave);
     document.addEventListener("click", onClick, true);
     return () => {
-      cancel();
+      dwell.clear();
       document.removeEventListener("pointerover", onOver);
-      document.removeEventListener("pointerleave", onLeaveWindow);
+      document.removeEventListener("pointerleave", onLeave);
       document.removeEventListener("click", onClick, true);
     };
   }, [inputMode, dwellMs, paused]);
